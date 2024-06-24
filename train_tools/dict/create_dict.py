@@ -13,7 +13,7 @@ def read_corpus_data(filename):
         # splitlines(): 문자열을 라인 단위로 분리하여 리스트로 반환
         # data: [['안녕하세요.', '0'], ['반가워요.', '0'], ...]
         # remove header
-        data = data[1:]
+        data = data[1:] # 헤더 제거하고 사용
     return data
 
 # 말뭉치 데이터 가져오기

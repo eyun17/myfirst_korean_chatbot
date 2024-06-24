@@ -1,3 +1,5 @@
+# Read Exel file and synchronize the DB and DATA
+
 import pymysql
 import openpyxl
 
