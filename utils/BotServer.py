@@ -1,5 +1,8 @@
-import socket
+'''
+Chatbot Server Module
+'''
 
+import socket
 
 class BotServer:
     def __init__(self, srv_port, listen_num):

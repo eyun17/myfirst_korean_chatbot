@@ -61,7 +61,7 @@ class Database:
         result = None
 
         try:
-            with self.conn.cursor(pymysql.cursors.DictCursor) as cursor:
+            with self.conn.cursor(pymysql.cursor.DictCursor) as cursor:
                 cursor.execute(sql)
                 result = cursor.fetchone()
         except Exception as ex:
