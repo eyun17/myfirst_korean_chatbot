@@ -12,7 +12,7 @@ from tensorflow.keras.layers import Input, Embedding, Dense, Dropout, Conv1D, Gl
 train_file = "total_train_data.csv"
 data = pd.read_csv(train_file, delimiter=',')
 queries = data['query'].tolist()
-intents = data['intetn'].tolist()
+intents = data['intent'].tolist()
 
 from utils.Preprocessing import Preprocess
 p = Preprocess(word2index_dic='../../train_tools/dict/chatbot_dict.bin',
