@@ -58,7 +58,7 @@ tag_tokenizer.fit_on_texts(tags)
 vocab_size = len(p.word_index) + 1
 tag_size = len(tag_tokenizer.word_index) + 1
 print("BIO 태그 사전 크기:" , tag_size)
-print("단ㄴ어 사전 크기:", vocab_size)
+print("단어 사전 크기:", vocab_size)
 
 # 학습용 단어 시퀀스 생성
 x_train = [p.get_wordidx_sequence(sent) for sent in sentences]
@@ -105,7 +105,7 @@ def sequences_to_tag(sequences): # 에측값을 index_to_ner를 사용하여 태
     result = []
     for sequence in sequences:  # 전체 시퀀스로부터 시퀀스를 하나씩 꺼낸다
         temp = []
-        for pred in sequence:   # 시퀀스로부터 에측값을 하나씩 꺼낸다
+        for pred in sequence:   # 시퀀스로부터 예측값을 하나씩 꺼낸다
             pred_index = np.argmax(pred) # 예를 들어 [0, 0, 1, 0, 1] 이라면 1의 인덱스인 2를 리턴한다.
             temp.append(index_to_ner[pred_index].replace("PAD", "0")) # 'PAD'는 '0'으로 변경
         result.append(temp)
