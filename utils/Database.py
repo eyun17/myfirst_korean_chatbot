@@ -14,7 +14,7 @@ class Database:
         self.password = password
         self.charset = charset
         self.db_name = db_name
-        self.con = None
+        self.conn = None
 
     # DB 연결
     def connect(self):
