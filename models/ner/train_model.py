@@ -64,7 +64,7 @@ print("단어 사전 크기:", vocab_size)
 x_train = [p.get_wordidx_sequence(sent) for sent in sentences]
 y_train = tag_tokenizer.texts_to_sequences(tags)
 
-index_to_ner = tag_tokenizer.idex_word # 시퀀스 인덱스를 ner로 변환하기 위해 사용
+index_to_ner = tag_tokenizer.index_word # 시퀀스 인덱스를 ner로 변환하기 위해 사용
 index_to_ner[0] = 'PAD'
 
 # 시퀀스 패딩 처리
@@ -73,7 +73,7 @@ x_train = preprocessing.sequence.pad_sequences(x_train, padding='post', maxlen=m
 y_train = preprocessing.sequence.pad_sequences(y_train, padding='post', maxlen=max_len)
 
 # 학습 데이터와 테스트 데이터를 8:2 비율로 분리
-x_train, x_test, y_train, y_test = train_test_split(x_train, y_train, rtest_size=.2, random_state=1234)
+x_train, x_test, y_train, y_test = train_test_split(x_train, y_train, test_size=.2, random_state=1234)
 
 # 출력 데이터를 원-핫 인코딩
 y_train = tf.keras.utils.to_categorical(y_train, num_classes=tag_size)
@@ -91,10 +91,10 @@ from tensorflow.keras.layers import LSTM, Embedding, Dense, TimeDistributed, Dro
 from tensorflow.keras.optimizers import Adam
 
 model = Sequential()
-model.add(Embedding(input_dim=vocab_size, ouptut_dim=30, input_length=max_len, mask_zero=True))
+model.add(Embedding(input_dim=vocab_size, output_dim=30, input_length=max_len, mask_zero=True))
 model.add(Bidirectional(LSTM(200, return_sequences=True, dropout=0.50, recurrent_dropout=0.25)))
 model.add(TimeDistributed(Dense(tag_size, activation='softmax')))
-model.compile(loss='categorical_crossentropy', optimier=Adam(0.01), metrics=['accuracy'])
+model.compile(loss='categorical_crossentropy', optimizer=Adam(0.01), metrics=['accuracy'])
 model.fit(x_train, y_train, batch_size=128, epochs=10)
 
 print("평가 결과 : ", model.evaluate(x_test, y_test)[1])
