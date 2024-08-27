@@ -1,32 +1,27 @@
-# When you implement this py file, the table in sql syntax will be created in the database.
-
-
-
 import pymysql
-from config.DatabaseConfig import *
+from config.DatabaseConfig import * # DB 접속 정보 불러오기
 
 db = None
-
 try:
     db = pymysql.connect(
-        host='127.0.0.1',
-        user='DB_HOST',
-        passwd='DB_PASSWORD',
-        db='DB_NAME',
+        host=DB_HOST,
+        user=DB_USER,
+        passwd=DB_PASSWORD,
+        db=DB_NAME,
         charset='utf8'
     )
 
     # 테이블 생성 sql 정의
     sql = '''
-    CREATE TABLE IF NOT EXISTS 'chatbot_train_data' (
-        `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-        `intent` VARCHAR(45) NULL,
-        `ner` TEXT NULL,
-        `query` TEXT NOT NULL,
-        `answer` TEXT NOT NULL,
-        `answer_image` VARCHAR(2048) NULL,
-        PRIMARY KEY (`id`))
-    ENGINE=InnoDB DEFAULT CHARSET=utf8
+      CREATE TABLE IF NOT EXISTS `chatbot_train_data` (
+      `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
+      `intent` VARCHAR(45) NULL,
+      `ner` VARCHAR(1024) NULL,
+      `query` TEXT NULL,
+      `answer` TEXT NOT NULL,
+      `answer_image` VARCHAR(2048) NULL,
+      PRIMARY KEY (`id`))
+    ENGINE = InnoDB DEFAULT CHARSET=utf8
     '''
 
     # 테이블 생성
@@ -34,11 +29,10 @@ try:
         cursor.execute(sql)
         print('테이블 생성 성공')
 
-
 except Exception as e:
-    print(e)  # db 연결 실패시 오류 내용 출력
+    print(e)
 
 finally:
     if db is not None:
         db.close()
-        print('DB 연결 닫기 성공')
+        print('서버 닫기')

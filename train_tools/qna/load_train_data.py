@@ -4,7 +4,8 @@ import pymysql
 import openpyxl
 
 from config.DatabaseConfig import *
-# DB ㅈㅓㅂ속 정보 불러오기
+
+# DB 접속 정보 불러오기
 
 
 # 학습 데이터 초기화
@@ -43,10 +44,10 @@ train_file = './train_data.xlsx'
 db = None
 try:
     db = pymysql.connect(
-        host='127.0.0.1',
-        user='DB_HOST',
-        passwd='DB_PASSWORD',
-        db='DB_NAME',
+        host=DB_HOST,
+        user=DB_USER,
+        passwd=DB_PASSWORD,
+        db=DB_NAME,
         charset='utf8'
     )
 
