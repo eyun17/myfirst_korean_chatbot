@@ -50,7 +50,7 @@ class Database:
             self.conn.commit()
             last_row_id = cursor.lastrowid
             # logging.debut("execute last_row_id: %d", last_row_id)
-        except Exception as ax:
+        except Exception as ex:
             logging.error(ex)
 
         finally:
