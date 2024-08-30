@@ -39,7 +39,7 @@ def to_client(conn, addr, params):
             exit(0) # 스레드 강제 종료
 
         # json 데이터로 변환
-        recv_json_dat = json.loads(read.decode())
+        recv_json_data = json.loads(read.decode())
         print('데이터 수신: ', recv_json_data)
         query = recv_json_data['Query']
 
@@ -54,7 +54,7 @@ def to_client(conn, addr, params):
         # 답변 검색
         try:
             f = FindAnswer(db)
-            answer_txt, naswer_image = f.search(intent_name, ner_tags)
+            answer_text, answer_image = f.search(intent_name, ner_tags)
             answer = f.tag_to_word(ner_predicts, answer_text)
 
         except:
