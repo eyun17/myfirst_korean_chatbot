@@ -15,8 +15,8 @@ queries = data['query'].tolist()
 intents = data['intent'].tolist()
 
 from utils.Preprocessing import Preprocess
-p = Preprocess(word2index_dic='../../train_tools/dict/chatbot_dict.bin',
-               userdic='../../utils/user_dic.tsv')
+p = Preprocess(word2index_dic='../train_tools/dict/chatbot_dict.bin',
+               userdic='../utils/user_dic.tsv')
 
 # 단어 시퀀스 생성
 sequences = []
@@ -98,4 +98,4 @@ print('Accuracy: %f' % (accuracy * 100))
 print('loss: %f' % (loss))
 
 # 모델 저장
-model.save('intent_model.h5')
+model.save('intent_model.keras')
